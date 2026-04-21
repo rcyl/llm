@@ -1,0 +1,12 @@
+FROM ghcr.io/ggml-org/llama.cpp:full-cuda AS llama
+
+# Install uv and jupyter notebook
+RUN curl -LsSf https://astral.sh/uv/install.sh | sh
+ENV PATH="/root/.local/bin:${PATH}"
+
+RUN uv pip install --system --break-system-packages jupyter theme-darcula bash_kernel
+RUN uv run python -m bash_kernel.install
+
+WORKDIR /app
+ENTRYPOINT ["/bin/bash", "-c", "uv run --with jupyter jupyter lab --ip 0.0.0.0 --allow-root"]
+
