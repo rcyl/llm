@@ -4,7 +4,7 @@ uv:
 	uv run --with jupyter jupyter lab --ip 0.0.0.0
 
 ttyd:
-	ttyd -W bash
+	ttyd -W /bin/zsh
 
 MODEL := unsloth/Qwen3.5-35B-A3B-GGUF:UD-IQ3_S
 serve:
